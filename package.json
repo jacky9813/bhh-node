@@ -1,0 +1,15 @@
+{
+  "name": "bhh-node",
+  "version": "0.0.1-alpha",
+  "description": "Better HTTP Handler ported to node.js (in terms of functionality)",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./test.js"
+  },
+  "repository": "github:jacky9813/bhh-node",
+  "author": "JackyCCC",
+  "license": "MIT",
+  "dependencies": {
+    "mime-types": "^2.1.34"
+  }
+}
