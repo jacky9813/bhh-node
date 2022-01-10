@@ -1,6 +1,6 @@
 {
   "name": "bhh-node",
-  "version": "0.0.1-alpha",
+  "version": "0.0.2-dev",
   "description": "Better HTTP Handler ported to node.js (in terms of functionality)",
   "main": "index.js",
   "scripts": {
