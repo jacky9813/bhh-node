@@ -10,7 +10,7 @@ server.maxRequestBodySize = 500; //Bytes
 
 server.register_handler(
     "/test/{test_arg}",
-    (request, response, argv)=>{
+    async (request, response, argv)=>{
         console.log(`Received argument ${argv.test_arg}`)
         response.writeHead(
             200,
@@ -27,7 +27,7 @@ server.register_handler(
 
 server.register_handler(
     "/test",
-    (request, response, argv) => {
+    async (request, response, argv) => {
         try{
             var data = JSON.parse(request.body);
         } catch(e){
@@ -62,7 +62,7 @@ The same as [http.Server.listen()](https://nodejs.org/api/http.html#serverlisten
 | Argument | Type | Description |
 | --- | --- | --- |
 | `path` | string | URI format. Using the `{}` bracket means that the section is a variable. `{}` is suggested to be used between two slashes. |
-| `handler` | function ([IncomingMessage](https://nodejs.org/api/http.html#class-httpincomingmessage), [ServerResponse](https://nodejs.org/api/http.html#class-httpserverresponse), Object) | The handler. `Object` in 3rd is the named variables sources from the URI. |
+| `handler` | async function ([IncomingMessage](https://nodejs.org/api/http.html#class-httpincomingmessage), [ServerResponse](https://nodejs.org/api/http.html#class-httpserverresponse), Object) | The handler. `Object` in 3rd is the named variables sources from the URI. |
 | `method` | string | Request method. Default: `GET` |
 | `optional_trail_slash` | boolean | If the URI have optional `/` at the end. Default: `true` |
 
