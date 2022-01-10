@@ -62,6 +62,7 @@ class BHH{
                         // Path found but no handler
                         this.errorHandler(req, res, {error: 405, message: `${req.method} is not allowed for ${req.url}`}, 405);
                     }
+                    break;
                 }
             // });
             }
