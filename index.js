@@ -20,6 +20,7 @@ class BHH{
         this._server = http.createServer(async (req, res) => {
             var matchFound = false;
             var path_list = Object.keys(this._handlers);
+            var handle_start = new Date();
             for(var i=0; i<path_list.length; i++){
             // Object.keys(this._handlers).forEach((path)=>{
                 var path = path_list[i];
@@ -103,8 +104,8 @@ class BHH{
                     }
                 }
             }
-
-            console.log(`${(new Date()).toISOString()} ${req.socket.remoteAddress} ${req.method} ${req.url} - ${res.statusCode}`)
+            var handle_end = new Date();
+            console.log(`${handle_end.toISOString()} ${(handle_end.getTime() - handle_start.getTime())}ms ${req.socket.remoteAddress} ${req.method} ${req.url} - ${res.statusCode}`)
         });
     }
 
