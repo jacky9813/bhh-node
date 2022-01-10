@@ -42,10 +42,10 @@ class BHH{
                                     this.errorHandler(req, res, {error: 413, message:"Payload Too Large"}, 413);
                                 }
                             });
-                            req.on("end", ()=>{
+                            req.on("end", async ()=>{
                                 req.body = reqBody;
                                 try{
-                                    resolve(handler_obj.handler[req.method.toUpperCase()](req, res, argv));
+                                    resolve(await handler_obj.handler[req.method.toUpperCase()](req, res, argv));
                                 } catch (e) {
                                     console.dir(e);
                                     if(res.headersSent){

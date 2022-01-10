@@ -6,7 +6,7 @@ var server = new bhh();
 
 server.register_handler(
     "/",
-    (req, res, argv) => {
+    async (req, res, argv) => {
         res.writeHead(200, {
             "Content-Type": "text/plain"
         });
@@ -17,7 +17,7 @@ server.register_handler(
 
 server.register_handler(
     "/test",
-    (req, res, argv) => {
+    async (req, res, argv) => {
         res.writeHead(200, {
             "Content-Type": "application/json"
         });
@@ -30,7 +30,7 @@ server.register_handler(
 
 server.register_handler(
     "/test",
-    (req, res, argv) => {
+    async (req, res, argv) => {
         console.log(req.body);
         try{
             req.setEncoding("utf8");
@@ -48,7 +48,7 @@ server.register_handler(
 
 server.register_handler(
     "/test/{input_1}",
-    (req, res, argv)=>{
+    async (req, res, argv)=>{
         console.dir(argv);
         res.writeHead(200, {
             "Content-Type": "application/json"
@@ -63,7 +63,7 @@ server.register_handler(
 
 server.register_handler(
     "/test/{arg1}/{arg2}",
-    (req, res, argv) => {
+    async (req, res, argv) => {
         console.dir(argv);
         res.writeHead(200, {
             "Content-Type": "application/json"
@@ -73,6 +73,19 @@ server.register_handler(
             result: "success",
             argv: argv
         }));
+    }
+);
+
+server.register_handler(
+    "/delay/{time}",
+    async (req, res, argv) =>{
+        await new Promise((resolve)=>{
+            setTimeout(resolve, parseInt(argv.time));
+        });
+        res.writeHead(200,{
+            "Content-Type": "text/plain"
+        });
+        res.end("DONE");
     }
 )
 
